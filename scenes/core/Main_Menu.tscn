@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1s8ugdbtardr"]
+
+[ext_resource type="Script" uid="uid://b4na6q6sm4qw6" path="res://scripts/core/Main_Menu.gd" id="1_gl3il"]
+[ext_resource type="Texture2D" uid="uid://dmnufs6gyrbqb" path="res://assets/images/backgrounds/ebd73ddc9a44ff6308ac2004e593798a.jpg" id="2_tu7mv"]
+[ext_resource type="FontFile" uid="uid://77clkpfms23v" path="res://assets/fonts/BalsamiqSans-Bold.ttf" id="3_2qac0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mmy82"]
+font = ExtResource("3_2qac0")
+font_size = 72
+font_color = Color(3.56168e-06, 0.615319, 1.73271e-06, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7ldt"]
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_gl3il")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_tu7mv")
+stretch_mode = 6
+
+[node name="Title" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "ECOAVENTURA"
+label_settings = SubResource("LabelSettings_mmy82")
+horizontal_alignment = 1
+
+[node name="MenuButtons" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="MenuButtons"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "JUGAR"
+
+[node name="SettingsButton" type="Button" parent="MenuButtons"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "CONFIGURACIÓN"
+
+[node name="ExitButton" type="Button" parent="MenuButtons"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 36
+theme_override_styles/pressed = SubResource("StyleBoxFlat_c7ldt")
+text = "SALIR"
+
+[node name="LoadButton" type="Button" parent="MenuButtons"]
+layout_mode = 2
