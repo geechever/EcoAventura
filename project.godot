@@ -11,15 +11,15 @@ config_version=5
 [application]
 
 config/name="EcoAventura"
-run/main_scene="uid://d1s8ugdbtardr"
+run/main_scene="uid://dk6ty4m3ykc1v"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://scripts/core/Global.gd"
-SaveSystem="*res://scripts/core/Save_System.gd"
-Settings="*res://scripts/core/Settings.gd"
+Global="*res://scripts/autoload/Global.gd"
+SaveSystem="*res://scripts/autoload/Save_System.gd"
+Settings="*res://scripts/autoload/Settings.gd"
 
 [display]
 

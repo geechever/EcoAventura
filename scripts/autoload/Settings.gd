@@ -1,14 +1,15 @@
 extends Node
 
-# Resolución
+# Configuración de pantalla
 var resolution_options = [
 	{"name": "1280x720", "width": 1280, "height": 720},
 	{"name": "1920x1080", "width": 1920, "height": 1080},
 	{"name": "Pantalla Completa", "fullscreen": true}
 ]
 var current_resolution = 0
+var vsync_enabled = true
 
-# Audio
+# Configuración de audio
 var audio_settings = {
 	"master_volume": 80,
 	"music_volume": 80,
@@ -16,12 +17,16 @@ var audio_settings = {
 	"muted": false
 }
 
-# Juego
-var game_settings = {
-	"language": "es",
-	"subtitles": true,
-	"tutorial": true
-}
+func _ready():
+	var settings_data = SaveSystem.load_settings()
+	if settings_data:
+		load_settings_data(settings_data)
+
+func load_settings_data(settings):
+	current_resolution = settings.get("resolution", 0)
+	vsync_enabled = settings.get("vsync", true)
+	audio_settings = settings.get("audio", audio_settings.duplicate())
+	apply_current_settings()
 
 func apply_current_settings():
 	apply_resolution()
@@ -34,6 +39,8 @@ func apply_resolution():
 	else:
 		get_window().mode = Window.MODE_WINDOWED
 		get_window().size = Vector2(res["width"], res["height"])
+	
+	get_window().vsync_mode = DisplayServer.VSYNC_ENABLED if vsync_enabled else DisplayServer.VSYNC_DISABLED
 
 func apply_audio():
 	AudioServer.set_bus_mute(0, audio_settings["muted"])
