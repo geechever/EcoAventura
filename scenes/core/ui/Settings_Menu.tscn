@@ -3,40 +3,21 @@
 [node name="SettingsMenu" type="CanvasLayer"]
 layer = 10
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="center_panel" type="CenterContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="Margen" type="MarginContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="Contenedor Principal" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="center_panel"]
 custom_minimum_size = Vector2(800, 600)
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 1910.0
-offset_bottom = 1070.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="CONFIGURACIÓN" type="Label" parent="Contenedor Principal"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="MargenContenedor" type="MarginContainer" parent="Contenedor Principal"]
-custom_minimum_size = Vector2(20, 20)
+[node name="MarginContainer" type="MarginContainer" parent="center_panel/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,52 +29,120 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="Contenedor" type="VBoxContainer" parent="Contenedor Principal/MargenContenedor"]
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-alignment = 1
-
-[node name="Botones" type="HBoxContainer" parent="Contenedor Principal/MargenContenedor/Contenedor"]
+[node name="VBoxContainer" type="VBoxContainer" parent="center_panel/Panel/MarginContainer"]
 layout_mode = 2
 
-[node name="Volver" type="Button" parent="Contenedor Principal/MargenContenedor/Contenedor/Botones"]
+[node name="CONFIGURACIÓN" type="Label" parent="center_panel/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+horizontal_alignment = 1
 
-[node name="Aplicar" type="Button" parent="Contenedor Principal/MargenContenedor/Contenedor/Botones"]
+[node name="TabContainer" type="TabContainer" parent="center_panel/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-
-[node name="Opciones" type="TabContainer" parent="Contenedor Principal/MargenContenedor/Contenedor"]
-layout_mode = 2
+size_flags_vertical = 3
 current_tab = 0
 
-[node name="Pantalla" type="VBoxContainer" parent="Contenedor Principal/MargenContenedor/Contenedor/Opciones"]
+[node name="Display" type="VBoxContainer" parent="center_panel/Panel/MarginContainer/VBoxContainer/TabContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 alignment = 1
 metadata/_tab_index = 0
 
-[node name="Resolución" type="OptionButton" parent="Contenedor Principal/MargenContenedor/Contenedor/Opciones/Pantalla"]
+[node name="GridContainer" type="GridContainer" parent="center_panel/Panel/MarginContainer/VBoxContainer/TabContainer/Display"]
 layout_mode = 2
+size_flags_vertical = 3
+columns = 2
 
-[node name="Pantalla Completa" type="CheckBox" parent="Contenedor Principal/MargenContenedor/Contenedor/Opciones/Pantalla"]
+[node name="Resolución" type="Label" parent="center_panel/Panel/MarginContainer/VBoxContainer/TabContainer/Display/GridContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 
-[node name="Sincronización Vertical" type="CheckBox" parent="Contenedor Principal/MargenContenedor/Contenedor/Opciones/Pantalla"]
+[node name="ResolutionOption" type="OptionButton" parent="center_panel/Panel/MarginContainer/VBoxContainer/TabContainer/Display/GridContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="Audio" type="VBoxContainer" parent="Contenedor Principal/MargenContenedor/Contenedor/Opciones"]
+[node name="Pantalla Completa" type="Label" parent="center_panel/Panel/MarginContainer/VBoxContainer/TabContainer/Display/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Fullscreen" type="CheckBox" parent="center_panel/Panel/MarginContainer/VBoxContainer/TabContainer/Display/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Vsync2" type="Label" parent="center_panel/Panel/MarginContainer/VBoxContainer/TabContainer/Display/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VsyncCheck" type="CheckBox" parent="center_panel/Panel/MarginContainer/VBoxContainer/TabContainer/Display/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Audio" type="VBoxContainer" parent="center_panel/Panel/MarginContainer/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Silenciar" type="CheckBox" parent="Contenedor Principal/MargenContenedor/Contenedor/Opciones/Audio"]
+[node name="Configuración de Audio" type="Label" parent="center_panel/Panel/MarginContainer/VBoxContainer/TabContainer/Audio"]
 layout_mode = 2
 
-[node name="Volumen General" type="HSlider" parent="Contenedor Principal/MargenContenedor/Contenedor/Opciones/Audio"]
+[node name="GridContainer" type="GridContainer" parent="center_panel/Panel/MarginContainer/VBoxContainer/TabContainer/Audio"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 3
+
+[node name="MasterValue" type="Label" parent="center_panel/Panel/MarginContainer/VBoxContainer/TabContainer/Audio/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="MasterSlider" type="HSlider" parent="center_panel/Panel/MarginContainer/VBoxContainer/TabContainer/Audio/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="MusicValue" type="Label" parent="center_panel/Panel/MarginContainer/VBoxContainer/TabContainer/Audio/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="MusicSlider" type="HSlider" parent="center_panel/Panel/MarginContainer/VBoxContainer/TabContainer/Audio/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="SFXValue" type="Label" parent="center_panel/Panel/MarginContainer/VBoxContainer/TabContainer/Audio/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="SFXSlider" type="HSlider" parent="center_panel/Panel/MarginContainer/VBoxContainer/TabContainer/Audio/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Silenciar" type="Label" parent="center_panel/Panel/MarginContainer/VBoxContainer/TabContainer/Audio/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="MuteCheck" type="CheckBox" parent="center_panel/Panel/MarginContainer/VBoxContainer/TabContainer/Audio/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="center_panel/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Música" type="HSlider" parent="Contenedor Principal/MargenContenedor/Contenedor/Opciones/Audio"]
+[node name="ApplyButton" type="Button" parent="center_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Efectos de Sonido" type="HSlider" parent="Contenedor Principal/MargenContenedor/Contenedor/Opciones/Audio"]
+[node name="Aplicar" type="TextEdit" parent="center_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/ApplyButton"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="BackButton" type="Button" parent="center_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+
+[node name="Volver" type="TextEdit" parent="center_panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/BackButton"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
